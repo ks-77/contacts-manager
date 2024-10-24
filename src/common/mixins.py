@@ -8,7 +8,7 @@ class IPAccessMixin:
     allowed_countries = ["UA", "PL"]
 
     def dispatch(self, request, *args, **kwargs):
-        request_ip = request.META.get(request.META.get('REMOTE_ADDR'))
+        request_ip = request.META.get('REMOTE_ADDR')
         country = ipapi.location(request_ip, output='country')
 
         if country not in self.allowed_countries:
